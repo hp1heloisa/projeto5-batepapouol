@@ -46,17 +46,17 @@ body{
     height: 26px;
     margin-right: 27px;
 }
-ion-icon:hover{
-    cursor: pointer;
-}
 .digitar input {
     margin-left: 17px;
-    font-style: italic;
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
     border: none;
     width: 100%;
+}
+.digitar input::placeholder{
+    color: #000000;
+    font-style: italic;
 }
 input:focus {
     box-shadow: 0 0 0 0;
@@ -153,6 +153,7 @@ button{
     color: #000000;
     overflow: scroll;
     z-index: 201;
+    transition: all .5s;
 }
 .sidebar ion-icon{
     margin-left: 18px;
@@ -195,6 +196,8 @@ button{
 }
 .sai{
     display: none;
+    transition: all .10s;
+
 }
 .certo{
     color: #28BB25;
@@ -206,4 +209,28 @@ button{
 }
 .visibilidade {
     margin-bottom: 25px;
+}
+.tipo:hover{
+    cursor: pointer;
+    background-color: #DCDCDC;
+}
+.perfil:hover{
+    cursor: pointer;
+    background-color: #DCDCDC;
+}
+ion-icon:hover{
+    cursor: pointer;
+}
+.escrever{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%;
+}
+.for{
+font-weight: 300;
+font-size: 14px;
+line-height: 30px;
+color: #505050;
+margin-left: 20px;
 }

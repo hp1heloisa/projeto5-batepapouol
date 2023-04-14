@@ -16,7 +16,7 @@ function certo(rep){
     sair.classList.add('sai');
     setInterval(certificacao,5000);
     online();
-    setInterval(online,5000);
+    setInterval(online,10000);
     const promensagem = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
     promensagem.then(mensagens);
     promensagem.catch(erroget);
@@ -41,16 +41,13 @@ function ruim(){
     console.log('desconectou')
 }
 function erro(rep){
-    nome = prompt('Esse nome já está em uso, digite outro nome:');
-    objnome = {
-        name: nome
-    }
-    const promessapost = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants",objnome);
-    promessapost.then(certo);
-    promessapost.catch(erro);
+    const nomeinicio = document.querySelector('.inicio input');
+    nomeinicio.value = '';
+    nomeinicio.setAttribute('placeholder','Nome em uso, tente outro!');
 }
+let mensagem;
 function enviarMensagem(){
-    const mensagem = document.querySelector("input");
+    mensagem = document.querySelector("input");
     let objenvio = {
         from: nome,
 	    to: destino,
@@ -63,6 +60,7 @@ function enviarMensagem(){
     console.log(objenvio);
 }
 function enviada(){
+    mensagem.value = '';
     const promensagem = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
     promensagem.then(mensagens);
     promensagem.catch(erroget); 
@@ -107,14 +105,14 @@ function renderizarMensagem(textos){
     for (let i=0;i<textos.data.length;i++){
         if (textos.data[i].type === "status"){
             batepapo.innerHTML += 
-                 `<div class="textmensage status"><div class="hora">(${textos.data[i].time})</div> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
+                 `<div class="textmensage status"><p class="hora">(${textos.data[i].time})</p> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
         } else if (textos.data[i].type == "message"){
             batepapo.innerHTML += 
-                `<div class="textmensage messagem"><div class="hora">(${textos.data[i].time})</div> 
+                `<div class="textmensage messagem"><p class="hora">(${textos.data[i].time})</p> 
                 <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         } else if (textos.data[i].from==nome && textos.data[i].to==destino){
             batepapo.innerHTML += 
-            `<div class="textmensage privado"><div class="hora">(${textos.data[i].time})</div> 
+            `<div class="textmensage privado"><p class="hora">(${textos.data[i].time})</p> 
             <p><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         }
     }
@@ -130,8 +128,9 @@ function partAtiv(){
 let destino = 'Todos'
 let forma = 'message'
 function forWho(escolhido){
+    const nova = document.querySelector('.for');
     console.log(escolhido);
-    const check = escolhido.querySelector('.certo')
+    const check = escolhido.querySelector('.certo');
     if (escolhido.classList.contains('perfil')==true){
         destino = escolhido.innerText;
         const todos = document.querySelectorAll('.perfil');
@@ -151,4 +150,9 @@ function forWho(escolhido){
         }
     }
     check.classList.remove('sai');
+    if (forma == 'message'){
+        nova.innerHTML = `Enviando para ${destino} (publicamente)`;
+    }else{
+        nova.innerHTML = `Enviando para ${destino} (reservadamente)`;
+    }
 }
