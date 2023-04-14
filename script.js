@@ -1,12 +1,18 @@
 axios.defaults.headers.common['Authorization'] = 'wSgfOHeNcKLb7lwqytq82yQV';
-let nome = prompt("Qual o seu nome?");
-let objnome = {
-    name: nome
-}
-const promessapost = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants",objnome);
-promessapost.then(certo);
-promessapost.catch(erro);
-
+let nome;
+let objnome;
+function entrar(){
+    const nomeinicio = document.querySelector('.inicio input');
+    nome = nomeinicio.value
+    objnome = {
+        name: nome
+    }
+    const sair = document.querySelector('.inicio');
+    sair.classList.add('sai');
+    const promessapost = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants",objnome);
+    promessapost.then(certo);
+    promessapost.catch(erro);
+} 
 function certo(rep){
     const promessaget= axios.get("https://mock-api.driven.com.br/api/vm/uol/participants");
     promessaget.then(certoget);
