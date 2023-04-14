@@ -7,22 +7,28 @@ function entrar(){
     objnome = {
         name: nome
     }
-    const sair = document.querySelector('.inicio');
-    sair.classList.add('sai');
     const promessapost = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants",objnome);
     promessapost.then(certo);
     promessapost.catch(erro);
 } 
 function certo(rep){
-    const promessaget= axios.get("https://mock-api.driven.com.br/api/vm/uol/participants");
-    promessaget.then(certoget);
-    promessaget.catch(erroget);
+    const sair = document.querySelector('.inicio');
+    sair.classList.add('sai');
     setInterval(certificacao,5000);
+    online();
+    setInterval(online,5000);
     const promensagem = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
     promensagem.then(mensagens);
     promensagem.catch(erroget);
     setInterval(atualizacao,3000);
 }
+
+function online(){
+    const promessaget= axios.get("https://mock-api.driven.com.br/api/vm/uol/participants");
+    promessaget.then(certoget);
+    promessaget.catch(erroget);
+}
+
 function certificacao(){
     let teste = axios.post("https://mock-api.driven.com.br/api/vm/uol/status",objnome);
     teste.then(bom);
@@ -47,9 +53,9 @@ function enviarMensagem(){
     const mensagem = document.querySelector("input");
     let objenvio = {
         from: nome,
-	    to: 'Todos',
+	    to: destino,
 	    text: mensagem.value,
-	    type: "message" // ou "private_message" para o bônus
+	    type: forma // ou "private_message" para o bônus
     }
     const promessaenvio = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages",objenvio)
     promessaenvio.then(enviada);
@@ -67,9 +73,18 @@ function naoenviada(){
 
 
 function certoget(rep){
-    console.log('participantes recebidos');
+    console.log('participantes online');
+    const conect = document.querySelector('.participantesAtivos');
+    conect.innerHTML = '';
+    for (let i=0;i<rep.data.length;i++){
+        if (destino==rep.data[i].name){ 
+            conect.innerHTML += `<div class="perfil" onclick="forWho(this)"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>`
+        } else{
+            conect.innerHTML += `<div class="perfil" onclick="forWho(this)"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo sai"></ion-icon></div>`
+        }
+    }
 }
-function erroget(rep){
+    function erroget(rep){
     alert('não pegou as informacoes')
 }
 
@@ -97,10 +112,43 @@ function renderizarMensagem(textos){
             batepapo.innerHTML += 
                 `<div class="textmensage messagem"><div class="hora">(${textos.data[i].time})</div> 
                 <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
-        } else{
+        } else if (textos.data[i].from==nome && textos.data[i].to==destino){
             batepapo.innerHTML += 
             `<div class="textmensage privado"><div class="hora">(${textos.data[i].time})</div> 
             <p><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         }
     }
+}
+
+function partAtiv(){
+    const side = document.querySelector('.sidebar');
+    const black = document.querySelector('.preto');
+    side.classList.toggle('sai');
+    black.classList.toggle('sai');
+}
+
+let destino = 'Todos'
+let forma = 'message'
+function forWho(escolhido){
+    console.log(escolhido);
+    const check = escolhido.querySelector('.certo')
+    if (escolhido.classList.contains('perfil')==true){
+        destino = escolhido.innerText;
+        const todos = document.querySelectorAll('.perfil');
+        for (let i=0;i<todos.length;i++){
+            todos[i].querySelector('.certo').classList.add('sai');
+        }
+    }
+    if (escolhido.classList.contains('tipo')==true){
+        if (escolhido.innerText == 'Público'){
+            forma = 'message';
+        } else{
+            forma = 'private_message';
+        }
+        const todos = document.querySelectorAll('.tipo');
+        for (let i=0;i<todos.length;i++){
+            todos[i].querySelector('.certo').classList.add('sai');
+        }
+    }
+    check.classList.remove('sai');
 }

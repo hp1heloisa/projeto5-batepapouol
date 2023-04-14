@@ -18,7 +18,7 @@
   <body>
     <div class="superior">
         <img src="./img/logo 1.png">
-        <ion-icon name="people" onclick="online()"></ion-icon>
+        <ion-icon name="people" onclick="online(partAtiv())"></ion-icon>
     </div>
     <div class="mensagens"></div>
     <div class="digitar">
@@ -30,8 +30,19 @@
         <input type="text" placeholder="Digite seu nome">
         <button onclick="entrar()">Entrar</button>
     </div>
-    <div class="sidebar">
+    <div class="sidebar sai">
+      <div class="conect">
+        <div class="titulo">Escolha um contato para enviar mensagem:</div>
+        <div class="perfil" onclick="forWho(this)"><ion-icon name="people"></ion-icon>Todos <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>
+        <div class="participantesAtivos"></div>
+      </div>
+      <div class="visibilidade">
+        <div class="titulo">Escolha a visibilidade:</div>
+        <div class="tipo" onclick="forWho(this)"><ion-icon name="lock-open"></ion-icon> Público <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>
+        <div class="tipo" onclick="forWho(this)"><ion-icon name="lock-closed"></ion-icon> Reservadamente <ion-icon name="checkmark-sharp" class="certo sai"></ion-icon></div>
+      </div>
     </div>
+    <div class="preto sai" onclick="online(partAtiv())"></div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

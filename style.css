@@ -107,9 +107,6 @@ strong{
     flex-direction: column;
     align-items: center;
 }
-.sai{
-    display: none;
-}
 
 .inicio img{
     margin-top: 72px;
@@ -141,4 +138,72 @@ button{
     text-align: center;
     color: #696969;
     border: none;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background-color: #FFFFFF;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    overflow: scroll;
+    z-index: 201;
+}
+.sidebar ion-icon{
+    margin-left: 18px;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}
+.perfil{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 36px;
+    position: relative;
+}
+.tipo{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 36px;
+    position: relative;
+}
+.titulo{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.preto{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.6);
+}
+.sai{
+    display: none;
+}
+.certo{
+    color: #28BB25;
+    width: 9px;
+    height: 7px;
+    font-weight: 700;
+    position: absolute;
+    right: 27px;
+}
+.visibilidade {
+    margin-bottom: 25px;
 }
