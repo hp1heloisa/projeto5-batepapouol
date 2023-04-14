@@ -105,14 +105,14 @@ function renderizarMensagem(textos){
     for (let i=0;i<textos.data.length;i++){
         if (textos.data[i].type === "status"){
             batepapo.innerHTML += 
-                 `<div class="textmensage status"><p class="hora">(${textos.data[i].time})</p> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
+                 `<div class="textmensage status"><div class="hora">(${textos.data[i].time})</div> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
         } else if (textos.data[i].type == "message"){
             batepapo.innerHTML += 
-                `<div class="textmensage messagem"><p class="hora">(${textos.data[i].time})</p> 
+                `<div class="textmensage messagem"><div class="hora">(${textos.data[i].time})</div> 
                 <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
-        } else if (textos.data[i].from==nome && textos.data[i].to==destino){
+        } else if ((textos.data[i].from==nome && textos.data[i].to==destino) || (textos.data[i].to==nome)){
             batepapo.innerHTML += 
-            `<div class="textmensage privado"><p class="hora">(${textos.data[i].time})</p> 
+            `<div class="textmensage privado"><div class="hora">(${textos.data[i].time})</div> 
             <p><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         }
     }
