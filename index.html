@@ -12,40 +12,40 @@
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" href="./imagens/back.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/logo 1.png" type="image/x-icon">
     <title>Bate-papo Uol</title>
   </head>
   <body>
     <div class="superior">
         <img src="./img/logo 1.png">
-        <ion-icon name="people" onclick="online(partAtiv())"></ion-icon>
+        <button class="aviao" data-test="open-participants" onclick="online(partAtiv())"><ion-icon name="people"></ion-icon></button>
     </div>
     <div class="mensagens"></div>
     <div class="digitar">
         <div class="escrever">
-          <input type="text" placeholder="Escreva aqui...">
-          <div class="for">Enviando para Todos</div>
+          <input type="text" placeholder="Escreva aqui..." data-test="input-message">
+          <div class="for" data-test="recipient">Enviando para Todos</div>
         </div>
-        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
+        <button class="aviao" data-test="send-message" onclick="enviarMensagem()"><ion-icon name="paper-plane-outline"></ion-icon></button>
     </div>
     <div class="inicio">
         <img src="./img/logo 1.png">
-        <input type="text" placeholder="Digite seu nome">
-        <button onclick="entrar()">Entrar</button>
+        <input type="text" placeholder="Digite seu nome" data-test="input-name">
+        <button onclick="entrar()" data-test="send-name">Entrar</button>
     </div>
     <div class="sidebar sai">
       <div class="conect">
         <div class="titulo">Escolha um contato para enviar mensagem:</div>
-        <div class="perfil" onclick="forWho(this)"><ion-icon name="people"></ion-icon>Todos <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>
+        <div class="perfil" onclick="forWho(this)" data-test="all"><ion-icon name="people"></ion-icon>Todos <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>
         <div class="participantesAtivos"></div>
       </div>
       <div class="visibilidade">
         <div class="titulo">Escolha a visibilidade:</div>
-        <div class="tipo" onclick="forWho(this)"><ion-icon name="lock-open"></ion-icon> Público <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>
-        <div class="tipo" onclick="forWho(this)"><ion-icon name="lock-closed"></ion-icon> Reservadamente <ion-icon name="checkmark-sharp" class="certo sai"></ion-icon></div>
+        <div class="tipo" onclick="forWho(this)" data-test="public"><ion-icon name="lock-open"></ion-icon> Público <ion-icon name="checkmark-sharp" class="certo" data-test="check"></ion-icon></div>
+        <div class="tipo" onclick="forWho(this)" data-test="private"><ion-icon name="lock-closed"></ion-icon> Reservadamente <ion-icon name="checkmark-sharp" class="certo sai" data-test="check"></ion-icon></div>
       </div>
     </div>
-    <div class="preto sai" onclick="online(partAtiv())"></div>
+    <div class="preto sai" onclick="online(partAtiv())" data-test="overlay"></div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

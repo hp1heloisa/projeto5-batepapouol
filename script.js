@@ -76,9 +76,9 @@ function certoget(rep){
     conect.innerHTML = '';
     for (let i=0;i<rep.data.length;i++){
         if (destino==rep.data[i].name){ 
-            conect.innerHTML += `<div class="perfil" onclick="forWho(this)"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo"></ion-icon></div>`
+            conect.innerHTML += `<div class="perfil" onclick="forWho(this)" data-test="participant"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo" data-test="check"></ion-icon></div>`
         } else{
-            conect.innerHTML += `<div class="perfil" onclick="forWho(this)"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo sai"></ion-icon></div>`
+            conect.innerHTML += `<div class="perfil" onclick="forWho(this)" data-test="participant"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo sai" data-test="check"></ion-icon></div>`
         }
     }
 }
@@ -105,14 +105,14 @@ function renderizarMensagem(textos){
     for (let i=0;i<textos.data.length;i++){
         if (textos.data[i].type === "status"){
             batepapo.innerHTML += 
-                 `<div class="textmensage status"><div class="hora">(${textos.data[i].time})</div> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
+                 `<div class="textmensage status" data-test="message"><div class="hora">(${textos.data[i].time})</div> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
         } else if (textos.data[i].type == "message"){
             batepapo.innerHTML += 
-                `<div class="textmensage messagem"><div class="hora">(${textos.data[i].time})</div> 
+                `<div class="textmensage messagem" data-test="message"><div class="hora">(${textos.data[i].time})</div> 
                 <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         } else if ((textos.data[i].from==nome && textos.data[i].to==destino) || (textos.data[i].to==nome)){
             batepapo.innerHTML += 
-            `<div class="textmensage privado"><div class="hora">(${textos.data[i].time})</div> 
+            `<div class="textmensage privado" data-test="message"><div class="hora">(${textos.data[i].time})</div> 
             <p><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         }
     }
