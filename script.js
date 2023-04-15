@@ -14,6 +14,8 @@ function entrar(){
 function certo(rep){
     const sair = document.querySelector('.inicio');
     sair.classList.add('sai');
+    const vamo = document.querySelector('.escrever');
+    vamo.innerHTML += '<p class="for" data-test="recipient">Enviando para Todos</p>';
     setInterval(certificacao,5000);
     online();
     setInterval(online,10000);
@@ -76,13 +78,13 @@ function certoget(rep){
     conect.innerHTML = '';
     for (let i=0;i<rep.data.length;i++){
         if (destino==rep.data[i].name){ 
-            conect.innerHTML += `<div class="perfil" onclick="forWho(this)" data-test="participant"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo" data-test="check"></ion-icon></div>`
+            conect.innerHTML += `<div class="perfil" onclick="forWho(this)" data-test="participant"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo" data-test="check"></ion-icon></div>`;
         } else{
-            conect.innerHTML += `<div class="perfil" onclick="forWho(this)" data-test="participant"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo sai" data-test="check"></ion-icon></div>`
+            conect.innerHTML += `<div class="perfil" onclick="forWho(this)" data-test="participant"><ion-icon name="person-circle"></ion-icon>${rep.data[i].name} <ion-icon name="checkmark-sharp" class="certo sai" data-test="check"></ion-icon></div>`;
         }
     }
 }
-    function erroget(rep){
+function erroget(rep){
     alert('não pegou as informacoes')
 }
 
@@ -110,7 +112,7 @@ function renderizarMensagem(textos){
             batepapo.innerHTML += 
                 `<div class="textmensage messagem" data-test="message"><div class="hora">(${textos.data[i].time})</div> 
                 <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
-        } else if ((textos.data[i].from==nome && textos.data[i].to==destino) || (textos.data[i].to==nome)){
+        } else if ((textos.data[i].to==nome) || (textos.data[i].from==nome)){
             batepapo.innerHTML += 
             `<div class="textmensage privado" data-test="message"><div class="hora">(${textos.data[i].time})</div> 
             <p><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
@@ -121,8 +123,8 @@ function renderizarMensagem(textos){
 function partAtiv(){
     const side = document.querySelector('.sidebar');
     const black = document.querySelector('.preto');
-    side.classList.toggle('sai');
-    black.classList.toggle('sai');
+    side.classList.toggle('transicao');
+    black.classList.toggle('transicao');
 }
 
 let destino = 'Todos'
@@ -156,3 +158,21 @@ function forWho(escolhido){
         nova.innerHTML = `Enviando para ${destino} (reservadamente)`;
     }
 }
+document.addEventListener("keypress", function(ativar){
+    if (ativar.key=="Enter"){
+        const teste = document.querySelector('.envio');
+        const condicao = document.querySelector('.inicio');
+        if (condicao.classList.contains('sai')==true){
+            teste.click();
+        }
+    }
+});
+document.addEventListener("keypress", function(ativar){
+    if (ativar.key=="Enter"){
+        const teste = document.querySelector('.teste');
+        const condicao = document.querySelector('.inicio');
+        if (condicao.classList.contains('sai')==false){
+            teste.click();
+        }
+    }
+});
