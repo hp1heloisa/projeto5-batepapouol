@@ -64,7 +64,7 @@ function enviada(){
     const promensagem = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
     promensagem.then(mensagens);
     promensagem.catch(erroget); 
-    const ultimo = batepapo.querySelectorAll('div');
+    const ultimo = batepapo.querySelectorAll('p');
     ultimo[ultimo.length-1].scrollIntoView();
 }
 function naoenviada(){
