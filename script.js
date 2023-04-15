@@ -66,6 +66,8 @@ function enviada(){
     const promensagem = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
     promensagem.then(mensagens);
     promensagem.catch(erroget); 
+    const ultimo = batepapo.querySelectorAll('div');
+    ultimo[ultimo.length-1].scrollIntoView();
 }
 function naoenviada(){
     window.location.reload();
@@ -100,9 +102,8 @@ function mensagens(mens){
     console.log(mens);
     renderizarMensagem(mens);
 }
-
+let batepapo = document.querySelector('.mensagens');
 function renderizarMensagem(textos){
-    const batepapo = document.querySelector('.mensagens');
     batepapo.innerHTML = '';
     for (let i=0;i<textos.data.length;i++){
         if (textos.data[i].type === "status"){
@@ -110,7 +111,7 @@ function renderizarMensagem(textos){
                  `<div class="textmensage status" data-test="message"><div class="hora">(${textos.data[i].time})</div> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
         } else if (textos.data[i].type == "message"){
             batepapo.innerHTML += 
-                `<div class="textmensage messagem" data-test="message"><div class="hora">(${textos.data[i].time})</div> 
+                `<div class="textmensage messagem" data-test="message"><p class="hora">(${textos.data[i].time})</p> 
                 <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
         } else if ((textos.data[i].to==nome) || (textos.data[i].from==nome)){
             batepapo.innerHTML += 
