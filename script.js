@@ -69,7 +69,9 @@ function enviada(){
     ultimo[ultimo.length-1].scrollIntoView();
 }
 function naoenviada(){
-    alert('Desculpe, mas não foi possível enviar a mensagem!');
+    let teste = axios.post("https://mock-api.driven.com.br/api/vm/uol/status",objnome);
+    teste.then(alert('Desculpe, mas não foi possível enviar a mensagem!'));
+    teste.catch(ruim);
 }
 
 
