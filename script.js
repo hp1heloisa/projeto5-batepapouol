@@ -39,6 +39,7 @@ function bom(){
 }
 function ruim(){
     console.log('desconectou')
+    window.location.reload();
 }
 function erro(rep){
     const nomeinicio = document.querySelector('.inicio input');
@@ -68,7 +69,7 @@ function enviada(){
     ultimo[ultimo.length-1].scrollIntoView();
 }
 function naoenviada(){
-    window.location.reload();
+    alert('Desculpe, mas não foi possível enviar a mensagem!');
 }
 
 
