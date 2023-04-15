@@ -106,15 +106,15 @@ function renderizarMensagem(textos){
     for (let i=0;i<textos.data.length;i++){
         if (textos.data[i].type === "status"){
             batepapo.innerHTML += 
-                 `<div class="textmensage status" data-test="message"><div class="hora">(${textos.data[i].time})</div> <p><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</p></div>`
+                 `<p class="textmensage status" data-test="message"><span class="hora">(${textos.data[i].time})</span> <span><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</span></p>`
         } else if (textos.data[i].type == "message"){
             batepapo.innerHTML += 
-                `<div class="textmensage messagem" data-test="message"><p class="hora">(${textos.data[i].time})</p> 
-                <p><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
+                `<p class="textmensage messagem" data-test="message"><span class="hora">(${textos.data[i].time})</span> 
+                <span><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</span></p>`
         } else if ((textos.data[i].to==nome) || (textos.data[i].from==nome)){
             batepapo.innerHTML += 
-            `<div class="textmensage privado" data-test="message"><div class="hora">(${textos.data[i].time})</div> 
-            <p><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</p></div>`
+            `<p class="textmensage privado" data-test="message"><span class="hora">(${textos.data[i].time})</span> 
+            <span><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</span></p>`
         }
     }
 }
