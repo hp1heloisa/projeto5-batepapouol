@@ -125,7 +125,7 @@ function partAtiv(){
     const side = document.querySelector('.sidebar');
     const black = document.querySelector('.preto');
     side.classList.toggle('transicao');
-    black.classList.toggle('transicao');
+    black.classList.toggle('sai');
 }
 
 let destino = 'Todos'

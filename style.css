@@ -137,16 +137,15 @@ button{
     z-index: 201;
     transition: all 1s;
 }
+.transicao{
+    transform: translateX(100%);
+}
 .sidebar ion-icon{
     margin-left: 18px;
     margin-right: 8px;
     width: 20px;
     height: 20px;
 }
-.transicao{
-    transform: translateX(100%);
-}
-
 .perfil{
     display: flex;
     justify-content: left;
