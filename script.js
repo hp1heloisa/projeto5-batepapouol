@@ -35,10 +35,11 @@ function certificacao(){
     teste.catch(ruim);
 }
 function bom(){
-    console.log('conectado')
+    console.log('conectado');
 }
 function ruim(){
-    console.log('desconectou')
+    console.log('desconectou');
+    window.location.reload();
 }
 function erro(rep){
     const nomeinicio = document.querySelector('.inicio input');
@@ -70,7 +71,7 @@ function enviada(){
 function naoenviada(){
     let vai = axios.post("https://mock-api.driven.com.br/api/vm/uol/status",objnome);
     vai.then(alert('Desculpe, mas não foi possível enviar a mensagem!'));
-    vai.catch(window.location.reload);
+    vai.catch(erro);
 }
 
 
