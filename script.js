@@ -39,7 +39,6 @@ function bom(){
 }
 function ruim(){
     console.log('desconectou');
-    window.location.reload();
 }
 function erro(rep){
     const nomeinicio = document.querySelector('.inicio input');
@@ -71,7 +70,7 @@ function enviada(){
 function naoenviada(){
     let vai = axios.post("https://mock-api.driven.com.br/api/vm/uol/status",objnome);
     vai.then(alert('Desculpe, mas não foi possível enviar a mensagem!'));
-    vai.catch(erro);
+    vai.catch(window.location.reload);
 }
 
 
