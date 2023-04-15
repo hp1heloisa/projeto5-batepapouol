@@ -14,8 +14,6 @@ function entrar(){
 function certo(rep){
     const sair = document.querySelector('.inicio');
     sair.classList.add('sai');
-    const vamo = document.querySelector('.escrever');
-    vamo.innerHTML += '<p class="for" data-test="recipient">Enviando para Todos</p>';
     setInterval(certificacao,5000);
     online();
     setInterval(online,10000);

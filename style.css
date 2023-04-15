@@ -36,7 +36,7 @@ body{
     bottom: 0;
     left: 0;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
     background: #FFFFFF;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
@@ -44,7 +44,7 @@ body{
 .digitar ion-icon{
     width: 26px;
     height: 26px;
-    margin-right: 27px;
+    margin-right: 2%;
 }
 .textmensage{
     font-family: 'Roboto';
@@ -106,10 +106,14 @@ strong{
     font-weight: 400;
     font-size: 18px;
     line-height: 25px;
-    color: #AEAEAE;
+    color: #000000;
     margin-top: 94px;
     margin-bottom: 15px;
 }
+.inicio input::placeholder{
+    color: #AEAEAE;
+}
+
 button{
     width: 109px;
     height: 45px;
@@ -222,6 +226,7 @@ ion-icon:hover{
     font-size: 18px;
     line-height: 21px;
     width: 100%;
+    margin-left: -.5px;
     border: none;
 }
 .digitar input::placeholder{
@@ -236,5 +241,7 @@ ion-icon:hover{
 .escrever{
     display: flex;
     flex-direction: column;
+    align-items: left;
     width: 100%;
+    margin-left: 2%;
 }
