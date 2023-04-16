@@ -37,8 +37,10 @@ function certificacao(){
 function bom(){
     console.log('conectado');
 }
+let auxiliar;
 function ruim(){
     console.log('desconectou');
+    auxiliar = 1;
 }
 function erro(rep){
     const nomeinicio = document.querySelector('.inicio input');
@@ -68,9 +70,12 @@ function enviada(){
     ultimo[ultimo.length-1].scrollIntoView();
 }
 function naoenviada(){
-    let vai = axios.post("https://mock-api.driven.com.br/api/vm/uol/status",objnome);
-    vai.then(alert('Desculpe, mas não foi possível enviar a mensagem!'));
-    vai.catch(window.location.reload);
+    if (auxiliar != 1){
+        alert('Desculpe, mas não foi possível enviar a mensagem!');
+    }
+    else{
+        window.location.reload();
+    }
 }
 
 
