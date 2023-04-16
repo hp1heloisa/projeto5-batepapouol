@@ -109,11 +109,11 @@ function renderizarMensagem(textos){
         if (textos.data[i].type === "status"){
             batepapo.innerHTML += 
                  `<p class="textmensage status" data-test="message"><span class="hora">(${textos.data[i].time})</span> <span><strong>${textos.data[i].from}</strong>  ${textos.data[i].text}</span></p>`
-        } else if (textos.data[i].type == "message"){
+        } else if ((textos.data[i].type == "message") || (textos.data[i].to=='Todos' && textos.data[i].type == "private_message")){
             batepapo.innerHTML += 
                 `<p class="textmensage messagem" data-test="message"><span class="hora">(${textos.data[i].time})</span> 
                 <span><strong>${textos.data[i].from}</strong> para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</span></p>`
-        } else if ((textos.data[i].to==nome) || (textos.data[i].from==nome)){
+        } else if (((textos.data[i].to==nome) || (textos.data[i].from==nome)) && textos.data[i].to!='Todos'){
             batepapo.innerHTML += 
             `<p class="textmensage privado" data-test="message"><span class="hora">(${textos.data[i].time})</span> 
             <span><strong>${textos.data[i].from}</strong> reservadamente para <strong>${textos.data[i].to}:</strong>  ${textos.data[i].text}</span></p>`
@@ -143,8 +143,10 @@ function teste2(){
 }
 let destino = 'Todos'
 let forma = 'message'
+const escrever = document.querySelector('.escrever')
+escrever.innerHTML +=  `<div class="for" data-test="recipient">Enviando para ${destino}</div>`
 function forWho(escolhido){
-    const nova = document.querySelector('.for');
+    const nova = escrever.querySelector('.for');
     console.log(escolhido);
     const check = escolhido.querySelector('.certo');
     if (escolhido.classList.contains('perfil')==true){
@@ -167,9 +169,15 @@ function forWho(escolhido){
     }
     check.classList.remove('sai');
     if (forma == 'message'){
-        nova.innerHTML = `Enviando para ${destino} (publicamente)`;
-    }else{
+        if (destino=='Todos'){
+            nova.innerHTML = 'Enviando para Todos'
+        } else{
+            nova.innerHTML = `Enviando para ${destino} (publicamente)`;
+        }
+    }else if (destino!='Todos'){
         nova.innerHTML = `Enviando para ${destino} (reservadamente)`;
+    } else{
+        nova.innerHTML = 'Enviando para Todos'
     }
 }
 document.addEventListener("keypress", function(ativar){
