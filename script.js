@@ -123,6 +123,7 @@ function renderizarMensagem(textos){
 const side = document.querySelector('.sidebar');
 const black = document.querySelector('.preto');
 function partAtiv(){
+    black.setAttribute('onclick','online(partAtiv())');
     if (side.classList.contains('sai')==true){
         black.classList.toggle('sai');
         side.classList.toggle('sai');
@@ -130,6 +131,7 @@ function partAtiv(){
     } else{
         teste()
         setTimeout(teste2,1010);
+        black.removeAttribute('onclick');
     }
 }
 function teste(){
