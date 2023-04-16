@@ -120,14 +120,25 @@ function renderizarMensagem(textos){
         }
     }
 }
-
+const side = document.querySelector('.sidebar');
+const black = document.querySelector('.preto');
 function partAtiv(){
-    const side = document.querySelector('.sidebar');
-    const black = document.querySelector('.preto');
+    if (side.classList.contains('sai')==true){
+        black.classList.toggle('sai');
+        side.classList.toggle('sai');
+        setTimeout(teste,100);
+    } else{
+        teste()
+        setTimeout(teste2,1010);
+    }
+}
+function teste(){
     side.classList.toggle('transicao');
+}
+function teste2(){
+    side.classList.toggle('sai');
     black.classList.toggle('sai');
 }
-
 let destino = 'Todos'
 let forma = 'message'
 function forWho(escolhido){
