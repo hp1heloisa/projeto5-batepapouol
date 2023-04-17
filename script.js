@@ -126,7 +126,7 @@ function renderizarMensagem(textos){
     }
 }
 const side = document.querySelector('.sidebar');
-const black = document.querySelector('.preto');
+const black = document.querySelector('.atras');
 function partAtiv(){
     black.setAttribute('onclick','online(partAtiv())');
     if (side.classList.contains('sai')==true){
